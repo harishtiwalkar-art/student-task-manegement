@@ -1,81 +1,110 @@
 :root {
-  --primary: #4f46e5;
-  --primary-hover: #4338ca;
-  --bg: #f8fafc;
+  /* Colors */
+  --primary: #0066cc;
+  --primary-hover: #0071e3;
+  --bg: #f5f5f7;
   --card-bg: #ffffff;
-  --text: #1e293b;
-  --border: #e2e8f0;
-  --low-priority: #10b981;
-  --med-priority: #f59e0b;
-  --high-priority: #ef4444;
+  --text: #1d1d1f;
+  --text-muted: #86868b;
+  --border: rgba(0, 0, 0, 0.08);
+  --border-focus: #0071e3;
+
+  /* Status Colors */
+  --low-priority: #34c759;
+  --med-priority: #ff9f0a;
+  --high-priority: #ff3b30;
+
+  /* Radii */
+  --radius-card: 18px;
+  --radius-input: 12px;
+  --radius-pill: 9999px;
 }
 
 * {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  font-family: SF Pro Text, SF Pro Display, system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+  -webkit-font-smoothing: antialiased;
 }
 
 body {
   background-color: var(--bg);
   color: var(--text);
-  padding: 2rem 1rem;
+  padding: 3rem 1.5rem;
   display: flex;
   justify-content: center;
+  min-height: 100vh;
 }
 
 .container {
-  max-width: 650px;
+  max-width: 680px;
   width: 100%;
 }
 
+/* Header Section */
 header {
-  margin-bottom: 1.5rem;
+  margin-bottom: 2.5rem;
   text-align: center;
 }
 
 header h1 {
-  color: var(--primary);
-  font-size: 2rem;
-  margin-bottom: 0.25rem;
+  font-family: SF Pro Display, system-ui, -apple-system, sans-serif;
+  color: var(--text);
+  font-size: 2.5rem;
+  font-weight: 600;
+  letter-spacing: -0.028em;
+  line-height: 1.07;
+  margin-bottom: 0.5rem;
 }
 
 header p {
-  color: #64748b;
-  font-size: 0.95rem;
+  color: var(--text-muted);
+  font-size: 1.0625rem; /* Apple's signature 17px body size */
+  font-weight: 400;
+  letter-spacing: -0.015em;
+  line-height: 1.47;
 }
 
+/* Stats Bar */
 .stats-bar {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 1rem;
-  margin-bottom: 1.5rem;
+  margin-bottom: 2rem;
 }
 
 .stat-card {
   background: var(--card-bg);
   border: 1px solid var(--border);
-  padding: 0.75rem;
-  border-radius: 8px;
+  padding: 1.25rem 1rem;
+  border-radius: var(--radius-card);
   text-align: center;
-  font-weight: 600;
-  font-size: 0.9rem;
+  font-weight: 400;
+  font-size: 0.95rem;
+  color: var(--text-muted);
+  letter-spacing: -0.015em;
 }
 
 .stat-card span {
-  color: var(--primary);
+  display: block;
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--text);
+  letter-spacing: -0.025em;
+  margin-top: 0.25rem;
 }
 
+/* Task Creation Form */
 .task-form {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 0.75rem;
+  gap: 1rem;
   background: var(--card-bg);
-  padding: 1.25rem;
-  border-radius: 10px;
+  padding: 1.5rem;
+  border-radius: var(--radius-card);
   border: 1px solid var(--border);
-  margin-bottom: 1.5rem;
+  margin-bottom: 2rem;
 }
 
 .task-form input:nth-child(1) {
@@ -83,66 +112,91 @@ header p {
 }
 
 .task-form input,
-.task-form select,
-.task-form button {
-  padding: 0.65rem 0.85rem;
-  border: 1px solid var(--border);
-  border-radius: 6px;
+.task-form select {
+  padding: 0.8rem 1rem;
+  background-color: var(--bg);
+  border: 1px solid transparent;
+  border-radius: var(--radius-input);
   font-size: 0.95rem;
+  color: var(--text);
   outline: none;
+  transition: all 0.2s ease;
+  letter-spacing: -0.015em;
+}
+
+.task-form input:focus,
+.task-form select:focus {
+  background-color: var(--card-bg);
+  border-color: var(--border-focus);
+  box-shadow: 0 0 0 3px rgba(0, 113, 227, 0.15);
 }
 
 .task-form button {
   grid-column: span 2;
   background: var(--primary);
-  color: white;
+  color: #ffffff;
   border: none;
-  font-weight: 600;
+  border-radius: var(--radius-pill);
+  padding: 0.85rem 1.5rem;
+  font-size: 1.0625rem;
+  font-weight: 400;
+  letter-spacing: -0.015em;
   cursor: pointer;
-  transition: background 0.2s;
+  transition: transform 0.15s ease, background-color 0.2s ease;
 }
 
 .task-form button:hover {
   background: var(--primary-hover);
 }
 
+.task-form button:active {
+  transform: scale(0.97); /* Apple micro-interaction */
+}
+
+/* Filter Bar */
 .filters {
-  margin-bottom: 1rem;
+  margin-bottom: 1.25rem;
   display: flex;
   align-items: center;
   justify-content: flex-end;
   gap: 0.5rem;
-  font-size: 0.9rem;
-  color: #64748b;
+  font-size: 0.875rem;
+  color: var(--text-muted);
 }
 
 .filters select {
-  padding: 0.4rem 0.6rem;
-  border-radius: 6px;
+  padding: 0.4rem 0.8rem;
+  border-radius: var(--radius-pill);
   border: 1px solid var(--border);
+  background: var(--card-bg);
+  color: var(--text);
+  font-size: 0.875rem;
+  outline: none;
+  cursor: pointer;
 }
 
+/* Task List */
 .task-list {
   list-style: none;
   display: flex;
   flex-direction: column;
-  gap: 0.75rem;
+  gap: 0.85rem;
 }
 
 .task-item {
   background: var(--card-bg);
   border: 1px solid var(--border);
-  border-radius: 8px;
-  padding: 1rem;
+  border-radius: var(--radius-card);
+  padding: 1.25rem 1.5rem;
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 1rem;
-  transition: opacity 0.2s;
+  transition: opacity 0.25s ease, transform 0.2s ease;
 }
 
 .task-item.completed {
-  opacity: 0.55;
+  opacity: 0.45;
 }
 
 .task-item.completed .task-title {
@@ -152,55 +206,93 @@ header p {
 .task-left {
   display: flex;
   align-items: center;
-  gap: 0.85rem;
+  gap: 1rem;
 }
 
+/* Custom Apple-styled Checkbox */
 .task-left input[type="checkbox"] {
-  width: 1.15rem;
-  height: 1.15rem;
+  appearance: none;
+  -webkit-appearance: none;
+  width: 1.35rem;
+  height: 1.35rem;
+  border: 1.5px solid #d2d2d7;
+  border-radius: 50%;
+  outline: none;
   cursor: pointer;
+  transition: all 0.2s ease;
+  position: relative;
+}
+
+.task-left input[type="checkbox"]:checked {
+  background-color: var(--primary);
+  border-color: var(--primary);
+}
+
+.task-left input[type="checkbox"]:checked::after {
+  content: "";
+  position: absolute;
+  top: 3.5px;
+  left: 6.5px;
+  width: 4px;
+  height: 8px;
+  border: solid white;
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
 }
 
 .task-details {
   display: flex;
   flex-direction: column;
-  gap: 0.3rem;
+  gap: 0.35rem;
 }
 
 .task-title {
   font-weight: 600;
-  font-size: 1rem;
+  font-size: 1.0625rem;
+  letter-spacing: -0.02em;
+  color: var(--text);
 }
 
 .task-meta {
-  font-size: 0.8rem;
-  color: #64748b;
+  font-size: 0.875rem;
+  color: var(--text-muted);
   display: flex;
-  gap: 0.75rem;
+  gap: 0.85rem;
   align-items: center;
 }
 
+/* Badges */
 .badge {
-  padding: 0.15rem 0.5rem;
-  border-radius: 12px;
+  padding: 0.2rem 0.65rem;
+  border-radius: var(--radius-pill);
   font-size: 0.75rem;
   font-weight: 600;
-  color: white;
+  color: #ffffff;
+  letter-spacing: -0.01em;
 }
 
 .badge-Low { background-color: var(--low-priority); }
 .badge-Medium { background-color: var(--med-priority); }
 .badge-High { background-color: var(--high-priority); }
 
+/* Delete Button */
 .delete-btn {
   background: none;
   border: none;
-  color: #ef4444;
-  font-size: 1.25rem;
+  color: var(--text-muted);
+  font-size: 1.4rem;
+  line-height: 1;
   cursor: pointer;
-  padding: 0.25rem 0.5rem;
+  padding: 0.35rem 0.6rem;
+  border-radius: 50%;
+  transition: color 0.2s ease, transform 0.15s ease, background-color 0.2s ease;
 }
 
 .delete-btn:hover {
-  color: #dc2626;
+  color: var(--high-priority);
+  background-color: rgba(255, 59, 48, 0.08);
+}
+
+.delete-btn:active {
+  transform: scale(0.9);
 }

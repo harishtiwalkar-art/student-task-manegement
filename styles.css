@@ -1,0 +1,206 @@
+:root {
+  --primary: #4f46e5;
+  --primary-hover: #4338ca;
+  --bg: #f8fafc;
+  --card-bg: #ffffff;
+  --text: #1e293b;
+  --border: #e2e8f0;
+  --low-priority: #10b981;
+  --med-priority: #f59e0b;
+  --high-priority: #ef4444;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
+body {
+  background-color: var(--bg);
+  color: var(--text);
+  padding: 2rem 1rem;
+  display: flex;
+  justify-content: center;
+}
+
+.container {
+  max-width: 650px;
+  width: 100%;
+}
+
+header {
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+
+header h1 {
+  color: var(--primary);
+  font-size: 2rem;
+  margin-bottom: 0.25rem;
+}
+
+header p {
+  color: #64748b;
+  font-size: 0.95rem;
+}
+
+.stats-bar {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.stat-card {
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  padding: 0.75rem;
+  border-radius: 8px;
+  text-align: center;
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+
+.stat-card span {
+  color: var(--primary);
+}
+
+.task-form {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.75rem;
+  background: var(--card-bg);
+  padding: 1.25rem;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  margin-bottom: 1.5rem;
+}
+
+.task-form input:nth-child(1) {
+  grid-column: span 2;
+}
+
+.task-form input,
+.task-form select,
+.task-form button {
+  padding: 0.65rem 0.85rem;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  font-size: 0.95rem;
+  outline: none;
+}
+
+.task-form button {
+  grid-column: span 2;
+  background: var(--primary);
+  color: white;
+  border: none;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.task-form button:hover {
+  background: var(--primary-hover);
+}
+
+.filters {
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 0.5rem;
+  font-size: 0.9rem;
+  color: #64748b;
+}
+
+.filters select {
+  padding: 0.4rem 0.6rem;
+  border-radius: 6px;
+  border: 1px solid var(--border);
+}
+
+.task-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.task-item {
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  transition: opacity 0.2s;
+}
+
+.task-item.completed {
+  opacity: 0.55;
+}
+
+.task-item.completed .task-title {
+  text-decoration: line-through;
+}
+
+.task-left {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+}
+
+.task-left input[type="checkbox"] {
+  width: 1.15rem;
+  height: 1.15rem;
+  cursor: pointer;
+}
+
+.task-details {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+.task-title {
+  font-weight: 600;
+  font-size: 1rem;
+}
+
+.task-meta {
+  font-size: 0.8rem;
+  color: #64748b;
+  display: flex;
+  gap: 0.75rem;
+  align-items: center;
+}
+
+.badge {
+  padding: 0.15rem 0.5rem;
+  border-radius: 12px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: white;
+}
+
+.badge-Low { background-color: var(--low-priority); }
+.badge-Medium { background-color: var(--med-priority); }
+.badge-High { background-color: var(--high-priority); }
+
+.delete-btn {
+  background: none;
+  border: none;
+  color: #ef4444;
+  font-size: 1.25rem;
+  cursor: pointer;
+  padding: 0.25rem 0.5rem;
+}
+
+.delete-btn:hover {
+  color: #dc2626;
+}
